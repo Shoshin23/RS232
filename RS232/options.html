@@ -1,0 +1,115 @@
+<style>
+table.top {
+    border-style:solid;
+    padding: 5;
+    width:500px;
+}
+sup {
+    font-size:70%;
+    color:red;
+    font-style:italic;
+    font-weight:bold;
+}
+.mono {
+    font-family:monospace;
+}
+.maxwide {
+    width:100%;
+}
+.r {
+    text-align:right;
+}
+.note {
+    font-size:13px;
+    font-style:italic;
+}
+.stat {
+    text-align:center;
+}
+</style>
+<table border="0" width="400"><tr><td>
+<i>
+  <b> Trade at your own risk, blah blah.</b></br>
+  If you wish to only use this as a prediction tool then dont add your MtGox account details just yet.
+  The app uses the first traded price of each hour for the EMA input.</br>
+
+  A (too) simple explanation of how this app trades.</br></br>
+if the value on the Badge of the extension is above the threshold value it indicates a buy. </br>
+If the value on the Badge is below the threshold value it sells. </br>
+
+Reading more on crossovers and EMAs would shed light on how this works + the Threshold concept was a little addition by me to decrease
+the amount of false signals that this technique could trigger if a volatile market like Bitcoins.</br>
+
+</i>
+<br><br>
+
+<table cellpadding="2" class="top">
+<form>
+<tr>
+ <td nowrap="nowrap">MtGox API Key</td>
+ <td>
+    <input type="text" size="36" id="apikey" class="mono maxwide">
+ </td>
+</tr>
+
+<tr>
+ <td nowrap="nowrap">MtGox API Secret</td>
+ <td>
+    <textarea id="apisec" cols="36" rows="3" class="mono maxwide"></textarea>
+ </td>
+</tr>
+
+<tr>
+ <td colspan="2">
+    <table width="100%"><tr>
+        <td align="center">EMA(<input type="text" size="2" maxlength="2" id="emas" class="mono r">)</td>
+        <td align="center">EMA(<input type="text" size="2" maxlength="2" id="emal" class="mono r">)</td>
+        <td align="center">Threshold=<input type="text" size="4" maxlength="4" id="tras" class="mono r">%<sup>1</sup></td>
+        <td align="center">Show last
+        <select id="sla">
+        <option value="6">6 entries</option>
+        <option value="12">12 entries</option>
+        <option value="24">24 entries</option>
+        <option value="48">48 entries</option>
+        <option value="72">72 entries</option>
+        <option value="96">96 entries</option>
+        <option value="120">120 entries</option>
+        </select></td>
+    </tr></table>
+ </td>
+</tr>
+</tr>
+
+<tr>
+ <td align="center">
+    <table width="100%">Trade Frequency :
+        <select id="tf">
+        <option value="3600">1 hour</option>
+        <option value="1800">30 minutes</option>
+        <option value="900">15 minutes</option>
+        <option value="300">5 minutes</option>
+        <option value="60">1 minute</option>
+        </select>
+    </table>
+ </td>
+</tr>
+
+<tr>
+ <td colspan="2" align="center">
+  <input type="button" style="width:200px;" id="butres" value="Reset to defaults">
+  <input type="submit" style="width:200px;" id="butsav" value="Apply and save changes">
+ </td>
+</tr>
+</form>
+</table>
+ <hr>
+ <div class="note">
+ <sup>1</sup>
+ The bot will buy or sell all the bitcoins at the given MtGox account
+ when the absolute difference between two EMA values (expressed in %)
+ holds above the <b>Threshold</b> for the last two ticks (hours).
+ </div>
+
+</table>
+
+<script src="options.js"></script>
